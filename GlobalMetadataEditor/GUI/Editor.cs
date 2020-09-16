@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GlobalMetadataEditor
+namespace GlobalMetadataEditor.GUI
 {
-    public partial class Form1 : Form
+    public partial class Editor : Form
     {
-        public Form1()
+        public Editor()
         {
             InitializeComponent();
         }

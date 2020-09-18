@@ -7,49 +7,68 @@ namespace GlobalMetadataEditor.GUI
 {
     class EditableListView : ListView
     {
-        private TextBox textBox;
+        private MyTextBox textBox;
         private Point point;
+        private MyTextBoxEventListener listener;
         public EditableListView() : base()
         {
             this.LabelEdit = false;
-            textBox = new TextBox();
-            textBox.Visible = false;
-            textBox.AutoSize = false;
-            textBox.Height = 16;
-            this.Controls.Add(this.textBox);
-            
-            for (int i = 0;i < 10; i++)
+            textBox = new MyTextBox
             {
-                ListViewItem item = new ListViewItem(i+1+"");
-                item.SubItems.Add("1");
-                item.SubItems.Add("");
-                item.SubItems.Add("");
-                this.Items.Add(item);
-            }
+                Visible = false,
+                AutoSize = false,
+                Height = 16,
+                
+            };
+            listener = new MyTextBoxEventListener();
+            textBox.SetOnEventListener(listener);
+            this.Controls.Add(this.textBox);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
+            GetListViewFocus();
+            base.OnMouseDown(e);
+        }
+
+        private void GetListViewFocus()
+        {
             point = this.PointToClient(Control.MousePosition);
             ListViewItem item = this.GetItemAt(point.X, point.Y);
-            if(item != null)
+            if (item != null)
             {
-                ListViewSubItem subItem =  item.GetSubItemAt(point.X, point.Y);
-                if(subItem != null)
+                ListViewSubItem subItem = item.GetSubItemAt(point.X, point.Y);
+                if (subItem != null)
                 {
-                    if(item.SubItems.IndexOf(subItem) == 2)
+                    if (item.SubItems.IndexOf(subItem) == 2)
                     {
-                        textBox.Clear();
+                        textBox.Text = subItem.Text;
                         textBox.Bounds = subItem.Bounds;
                         textBox.Visible = true;
+                        //失去焦点时，把内容传给listview
+                        listener.LostFocus = (string text) =>
+                        {
+                            this.Focus();
+                            subItem.Text = text;
+                            textBox.Clear();
+                            this.textBox.Visible = false;
+                            if (!text.Equals(""))
+                            {
+                                item.SubItems[3].Text = "*";
+                            }
+                            else
+                            {
+                                item.SubItems[3].Text = "";
+                            }
+                        };
+
                     }
                 }
                 return;
             }
             ToHideTextBox();
-            base.OnMouseDown(e);
-            
         }
+
 
         private void ToHideTextBox()
         {
@@ -63,6 +82,7 @@ namespace GlobalMetadataEditor.GUI
             textBox.Visible = false;
             base.OnSizeChanged(e);
         }
+
 
 
 

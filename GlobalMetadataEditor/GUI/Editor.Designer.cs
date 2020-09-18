@@ -40,13 +40,15 @@ namespace GlobalMetadataEditor.GUI
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.letterCase = new System.Windows.Forms.CheckBox();
+            this.wholeWord = new System.Windows.Forms.CheckBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.editableListView = new GlobalMetadataEditor.GUI.EditableListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.original = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.replace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.hasModify = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,26 +78,30 @@ namespace GlobalMetadataEditor.GUI
             // 打开文件ToolStripMenuItem
             // 
             this.打开文件ToolStripMenuItem.Name = "打开文件ToolStripMenuItem";
-            this.打开文件ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.打开文件ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.打开文件ToolStripMenuItem.Text = "打开文件";
+            this.打开文件ToolStripMenuItem.Click += new System.EventHandler(this.OpenFile);
             // 
             // 保存文件ToolStripMenuItem
             // 
             this.保存文件ToolStripMenuItem.Name = "保存文件ToolStripMenuItem";
-            this.保存文件ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.保存文件ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.保存文件ToolStripMenuItem.Text = "保存文件";
+            this.保存文件ToolStripMenuItem.Click += new System.EventHandler(this.SaveFile);
             // 
             // 另存文件ToolStripMenuItem
             // 
             this.另存文件ToolStripMenuItem.Name = "另存文件ToolStripMenuItem";
-            this.另存文件ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.另存文件ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.另存文件ToolStripMenuItem.Text = "另存文件";
+            this.另存文件ToolStripMenuItem.Click += new System.EventHandler(this.SaveAs);
             // 
             // 关闭文件ToolStripMenuItem
             // 
             this.关闭文件ToolStripMenuItem.Name = "关闭文件ToolStripMenuItem";
-            this.关闭文件ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.关闭文件ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.关闭文件ToolStripMenuItem.Text = "关闭文件";
+            this.关闭文件ToolStripMenuItem.Click += new System.EventHandler(this.CloseFile);
             // 
             // 关于ToolStripMenuItem
             // 
@@ -109,6 +115,7 @@ namespace GlobalMetadataEditor.GUI
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(600, 25);
             this.textBox1.TabIndex = 1;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button1
             // 
@@ -119,26 +126,36 @@ namespace GlobalMetadataEditor.GUI
             this.button1.TabIndex = 2;
             this.button1.Text = "搜索";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.OnButtonClick);
             // 
             // checkBox1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(699, 35);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(74, 19);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "大小写";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.letterCase.AutoSize = true;
+            this.letterCase.Location = new System.Drawing.Point(699, 35);
+            this.letterCase.Name = "checkBox1";
+            this.letterCase.Size = new System.Drawing.Size(74, 19);
+            this.letterCase.TabIndex = 3;
+            this.letterCase.Text = "大小写";
+            this.letterCase.UseVisualStyleBackColor = true;
             // 
             // checkBox2
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(785, 35);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(59, 19);
-            this.checkBox2.TabIndex = 4;
-            this.checkBox2.Text = "整词";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.wholeWord.AutoSize = true;
+            this.wholeWord.Location = new System.Drawing.Point(785, 35);
+            this.wholeWord.Name = "checkBox2";
+            this.wholeWord.Size = new System.Drawing.Size(59, 19);
+            this.wholeWord.TabIndex = 4;
+            this.wholeWord.Text = "整词";
+            this.wholeWord.UseVisualStyleBackColor = true;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "global-metadata.dat";
+            this.openFileDialog1.Filter = "global-metadata.dat|global-metadata.dat|所有文件|*.*";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.FileName = "global-metadata.dat";
             // 
             // editableListView
             // 
@@ -158,6 +175,11 @@ namespace GlobalMetadataEditor.GUI
             this.editableListView.UseCompatibleStateImageBehavior = false;
             this.editableListView.View = System.Windows.Forms.View.Details;
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "索引";
+            this.columnHeader1.Width = 42;
+            // 
             // original
             // 
             this.original.Text = "原始字符";
@@ -173,11 +195,6 @@ namespace GlobalMetadataEditor.GUI
             this.hasModify.Text = "是否修改";
             this.hasModify.Width = 72;
             // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "索引";
-            this.columnHeader1.Width = 42;
-            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -185,8 +202,8 @@ namespace GlobalMetadataEditor.GUI
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(908, 531);
             this.Controls.Add(this.editableListView);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.wholeWord);
+            this.Controls.Add(this.letterCase);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
@@ -212,13 +229,15 @@ namespace GlobalMetadataEditor.GUI
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox letterCase;
+        private System.Windows.Forms.CheckBox wholeWord;
         //private System.Windows.Forms.ListView listView1;
         private EditableListView editableListView;
         private ColumnHeader original;
         private ColumnHeader replace;
         private ColumnHeader hasModify;
         private ColumnHeader columnHeader1;
+        private OpenFileDialog openFileDialog1;
+        private SaveFileDialog saveFileDialog1;
     }
 }

@@ -142,6 +142,20 @@ namespace GlobalMetadataEditor.GUI
             //}
             int index = this.editableListView.SelectedIndices.Count > 0 ? this.editableListView.SelectedIndices[0] : -1;
             Console.WriteLine(index);
+            int listCount = this.editableListView.Items.Count;
+            for (int i=0;i<listCount-index-1;i++)
+            {
+                var item = this.editableListView.Items[i+index+1];
+                if (CompareString(text,item.SubItems[1].Text))
+                {
+                    this.editableListView.Focus();
+                    item.Selected = true;
+                    item.EnsureVisible();
+                    return;
+                }
+            }
+            this.editableListView.Items[0].Selected = true;
+
             
 
 

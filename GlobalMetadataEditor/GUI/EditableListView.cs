@@ -12,7 +12,6 @@ namespace GlobalMetadataEditor.GUI
         private MyTextBoxEventListener listener;
         public EditableListView() : base()
         {
-            this.LabelEdit = false;
             textBox = new MyTextBox
             {
                 Visible = false,

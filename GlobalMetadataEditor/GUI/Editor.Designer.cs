@@ -174,6 +174,9 @@ namespace GlobalMetadataEditor.GUI
             this.editableListView.TabIndex = 5;
             this.editableListView.UseCompatibleStateImageBehavior = false;
             this.editableListView.View = System.Windows.Forms.View.Details;
+            this.editableListView.LabelEdit = false;
+            this.editableListView.MultiSelect = false;
+
             // 
             // columnHeader1
             // 

@@ -136,43 +136,30 @@ namespace GlobalMetadataEditor.GUI
         private void OnButtonClick(object sender, EventArgs e)
         {
             string text = this.textBox1.Text;
+            //if(text == "")
+            //{
+            //    return;
+            //}
+            int index = this.editableListView.SelectedIndices.Count > 0 ? this.editableListView.SelectedIndices[0] : -1;
+            Console.WriteLine(index);
+            
+
+
+
+
+        }
+
+        private bool CompareString(string pattern,string text)
+        {
             if (!this.letterCase.Checked && !this.wholeWord.Checked)
             {
-                Console.WriteLine(SearchMode.IgnoreCase);
-                Console.WriteLine("appleApple".Contains(text));
+                return false;
             }
             else if (this.letterCase.Checked && !this.wholeWord.Checked)
             {
-                Console.WriteLine(SearchMode.Sensitive);
-            }
-            else if (!this.letterCase.Checked && this.wholeWord.Checked)
-            {
-                Console.WriteLine(SearchMode.WholeWordIgnoreCase);
-            }
-            else
-            {
-                Console.WriteLine(SearchMode.WholeWordSensitive);
-            }
-            
-            Console.WriteLine();
-            
-        }
-
-        private bool CompareString(SearchMode mode,string pattern,string text)
-        {
-            if (mode.Equals(SearchMode.IgnoreCase))
-            {
-                return false;
-            }
-            else if (mode.Equals(SearchMode.Sensitive))
-            {
                 return text.Contains(pattern);
             }
-            else if (mode.Equals(SearchMode.WholeWordIgnoreCase))
-            {
-                return false;
-            }
-            else if (mode.Equals(SearchMode.WholeWordSensitive))
+            else if (!this.letterCase.Checked && this.wholeWord.Checked)
             {
                 return false;
             }

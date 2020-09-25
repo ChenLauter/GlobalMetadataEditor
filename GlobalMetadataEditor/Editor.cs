@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GlobalMetadataEditor.GUI
+namespace GlobalMetadataEditor
 {
     public partial class Editor : Form
     {
@@ -90,6 +86,7 @@ namespace GlobalMetadataEditor.GUI
                     file = null;
                 }
             });
+            this.toolStripStatusLabel1.Text = "已加载完成...";
         }
 
         private void SaveFile(object sender, EventArgs e)

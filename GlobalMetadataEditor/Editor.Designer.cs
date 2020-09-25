@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace GlobalMetadataEditor.GUI
+namespace GlobalMetadataEditor
 {
     partial class Editor
     {
@@ -46,7 +46,7 @@ namespace GlobalMetadataEditor.GUI
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.editableListView = new GlobalMetadataEditor.GUI.EditableListView();
+            this.editableListView = new GlobalMetadataEditor.EditableListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.original = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.replace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));

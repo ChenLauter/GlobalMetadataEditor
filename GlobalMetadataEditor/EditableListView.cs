@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using static System.Windows.Forms.ListViewItem;
 
-namespace GlobalMetadataEditor.GUI
+namespace GlobalMetadataEditor
 {
     class EditableListView : ListView
     {

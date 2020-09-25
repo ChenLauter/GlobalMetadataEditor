@@ -48,23 +48,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\EditableListView.cs">
+    <Compile Include="EditableListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\Editor.cs">
+    <Compile Include="Editor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\Editor.Designer.cs">
+    <Compile Include="Editor.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\MyTextBox.cs">
+    <Compile Include="MyTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\MyTextBoxEventListener.cs" />
+    <Compile Include="MyTextBoxEventListener.cs" />
     <Compile Include="MetadataFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GUI\Editor.resx">
+    <EmbeddedResource Include="Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

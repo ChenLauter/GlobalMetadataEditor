@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace GlobalMetadataEditor
 {
@@ -16,7 +14,6 @@ namespace GlobalMetadataEditor
     class MetadataFile : IDisposable
     {
         public BinaryReader reader;
-
         private uint offset;
         private uint length;
         private long dataMsgPositon;

@@ -91,6 +91,7 @@ namespace GlobalMetadataEditor
 
         private void SaveFile(object sender, EventArgs e)
         {
+            this.Focus();
             if(file == null)
             {
                 return;
@@ -117,6 +118,7 @@ namespace GlobalMetadataEditor
 
         private void SaveAs(object sender, EventArgs e)
         {
+            this.Focus();
             if (file == null)
             {
                 return;
@@ -154,6 +156,7 @@ namespace GlobalMetadataEditor
 
         private void CloseFile(object sender, EventArgs e)
         {
+            this.editableListView.textBox.Visible = false;
             file?.Dispose();
             Invoke(new Action(delegate { this.editableListView.Items.Clear(); }));
         }

@@ -7,7 +7,7 @@ namespace GlobalMetadataEditor
 {
     class EditableListView : ListView
     {
-        private MyTextBox textBox;
+        public MyTextBox textBox;
         private Point point;
         private MyTextBoxEventListener listener;
         public EditableListView() : base()
@@ -62,6 +62,10 @@ namespace GlobalMetadataEditor
                         };
 
                     }
+                    if (item.SubItems.IndexOf(subItem) == 1)
+                    {
+                        Clipboard.SetText(subItem.Text);
+                    }
                 }
                 return;
             }
@@ -78,12 +82,38 @@ namespace GlobalMetadataEditor
 
         protected override void OnSizeChanged(EventArgs e)
         {
-            textBox.Visible = false;
+            if (textBox.Visible)
+            {
+                textBox.Bounds = this.SelectedItems[0].SubItems[2].Bounds;
+            }
             base.OnSizeChanged(e);
         }
 
-
-
-
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            //让textbox跟列表一起滑动
+            if (textBox.Visible)
+            {
+                Rectangle rectangle = this.SelectedItems[0].SubItems[2].Bounds;
+                if(e.Delta < 0)
+                {
+                    int showItemCount = (int)(this.Height / 16.5f) - 2;
+                    if(this.TopItem.Index == this.Items.Count - showItemCount)
+                    {
+                        return;
+                    }
+                    textBox.Bounds = new Rectangle(rectangle.X, rectangle.Y - 48, rectangle.Width, rectangle.Height);
+                }
+                else
+                {
+                    if (this.TopItem.Index == 0)
+                    {
+                        return;
+                    }
+                    textBox.Bounds = new Rectangle(rectangle.X, rectangle.Y + 48, rectangle.Width, rectangle.Height);
+                }
+            }
+            base.OnMouseWheel(e);
+        }
     }
 }
